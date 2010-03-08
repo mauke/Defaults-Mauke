@@ -17,7 +17,7 @@ WriteMakefile(
         'strict' => 0,
         'utf8' => 0,
         'indirect' => 0,
-        'Function::Parameters' => 0,
+        'Function::Parameters' => '0.04',
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Defaults-Mauke-*' },

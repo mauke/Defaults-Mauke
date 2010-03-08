@@ -7,7 +7,7 @@ use utf8;
 no indirect;  # beware bugs/segfaults
 use Function::Parameters;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 fun _croak {
 	require Carp;
@@ -23,6 +23,8 @@ fun _indir($obj, $meth) {
 }
 
 fun import($class, @args) {
+	my $caller = caller;
+	
 	_croak qq{"$_" is not exported by the $class module} for @args;
 	
 	strict->import;
@@ -30,7 +32,7 @@ fun import($class, @args) {
 	warnings->unimport(qw[recursion qw]);
 	utf8->import;
 	indirect->unimport(hook => \&_indir);
-	Function::Parameters->import;
+	Function::Parameters::import_into $caller;
 }
 
 1
