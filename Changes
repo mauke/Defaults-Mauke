@@ -1,5 +1,9 @@
 Revision history for Defaults-Mauke
 
+0.05    2010-03-08
+        * use import_into from Function::Parameters 0.04
+        * add a a basic compile/load test
+        
 0.04    2009-12-14
         First version, released on an unsuspecting world.
 
