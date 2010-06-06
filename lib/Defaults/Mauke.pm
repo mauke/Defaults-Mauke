@@ -5,11 +5,11 @@ use strict;
 use utf8;
 
 no indirect;  # beware bugs/segfaults
-use Function::Parameters;
+# use Function::Parameters;  # sucks too much
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
-fun _croak {
+sub _croak {
 	require Carp;
 	{
 		no warnings qw(redefine);
@@ -18,11 +18,13 @@ fun _croak {
 	goto &_croak;
 }
 
-fun _indir($obj, $meth) {
+sub _indir {
+	my ($obj, $meth) = @_;
 	_croak qq{Indirect call of method "$meth" on object "$obj"};
 }
 
-fun import($class, @args) {
+sub import {
+	my ($class, @args) = @_;
 	my $caller = caller;
 	
 	_croak qq{"$_" is not exported by the $class module} for @args;
@@ -32,7 +34,7 @@ fun import($class, @args) {
 	warnings->unimport(qw[recursion qw]);
 	utf8->import;
 	indirect->unimport(hook => \&_indir);
-	Function::Parameters::import_into $caller;
+	#Function::Parameters::import_into $caller;
 }
 
 1
@@ -53,7 +55,6 @@ Defaults::Mauke - load a few generally useful modules to save typing
  # no warnings qw[recursion qw];
  # use utf8;
  # no indirect;
- # use Function::Parameters;
 
 =head1 DESCRIPTION
 
@@ -64,8 +65,7 @@ and adapt the source.
 
 =head1 SEE ALSO
 
-L<strict>, L<warnings>, L<utf8>, L<perllexwarn>, L<indirect>,
-L<Function::Parameters>.
+L<strict>, L<warnings>, L<utf8>, L<perllexwarn>, L<indirect>.
 
 =head1 AUTHOR
 

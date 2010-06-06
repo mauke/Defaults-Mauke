@@ -1,11 +1,13 @@
 use Defaults::Mauke;
 use Test::More;
 
-fun foo($x) {
-	$x
+{
+	package T;
+	sub f { 1 }
 }
 
-ok foo 1;
-ok !foo 0;
+ok !eval "f T";
+ok $@;
+like $@, qr/indirect/i;
 
 done_testing;
