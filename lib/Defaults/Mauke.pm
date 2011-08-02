@@ -5,9 +5,9 @@ use strict;
 use utf8;
 
 no indirect;  # beware bugs/segfaults
-# use Function::Parameters;  # sucks too much
+use Function::Parameters ();  # suckage hopefully fixed
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 sub _croak {
 	require Carp;
@@ -34,7 +34,7 @@ sub import {
 	warnings->unimport(qw[recursion qw]);
 	utf8->import;
 	indirect->unimport(hook => \&_indir);
-	#Function::Parameters::import_into $caller;
+	Function::Parameters::import_into $caller;
 }
 
 1
@@ -55,6 +55,7 @@ Defaults::Mauke - load a few generally useful modules to save typing
  # no warnings qw[recursion qw];
  # use utf8;
  # no indirect;
+ # use Function::Parameters;
 
 =head1 DESCRIPTION
 
@@ -65,7 +66,7 @@ and adapt the source.
 
 =head1 SEE ALSO
 
-L<strict>, L<warnings>, L<utf8>, L<perllexwarn>, L<indirect>.
+L<strict>, L<warnings>, L<utf8>, L<perllexwarn>, L<indirect>, L<Function::Parameters>.
 
 =head1 AUTHOR
 

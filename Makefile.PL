@@ -11,8 +11,10 @@ WriteMakefile(
       ? ('LICENSE'=> 'unrestricted')
       : ()),
     PL_FILES            => {},
-    PREREQ_PM => {
+    BUILD_REQUIRES => {
         'Test::More' => 0,
+    },
+    PREREQ_PM => {
         'warnings' => 0,
         'strict' => 0,
         'utf8' => 0,

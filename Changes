@@ -1,5 +1,8 @@
 Revision history for Defaults-Mauke
 
+0.06    2011-08-02
+        * add Function::Parameters back in
+
 0.06    2010-06-06
         * remove Function::Parameters
 
