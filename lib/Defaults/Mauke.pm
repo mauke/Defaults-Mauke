@@ -7,7 +7,7 @@ use utf8;
 no indirect;  # beware bugs/segfaults
 use Function::Parameters ();  # suckage hopefully fixed
 
-our $VERSION = '0.07';
+*VERSION = \'0.071';
 
 sub _croak {
 	require Carp;
