@@ -10,9 +10,12 @@ fun foo($x, $y) {
 	sub f { 1 }
 }
 
-ok !eval "f T";
-ok $@;
-like $@, qr/indirect/i;
+SKIP: {
+	skip "'indirect' doesn't propagate into evals on <5.10", 3 if $] < 5.010;
+	ok !eval "f T";
+	ok $@;
+	like $@, qr/indirect/i;
+}
 
 ok !eval "\$x";
 ok $@;
