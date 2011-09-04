@@ -4,6 +4,7 @@ use warnings;
 use strict;
 use utf8;
 
+no bareword::filehandles;
 no indirect;  # beware bugs/segfaults
 use Function::Parameters ();  # suckage hopefully fixed
 
@@ -26,6 +27,7 @@ sub import {
 	warnings->import;
 	warnings->unimport(qw[recursion qw]);
 	utf8->import;
+	bareword::filehandles->unimport;
 	indirect->unimport(hook => \&_indir);
 	Function::Parameters::import_into $caller;
 }
@@ -44,9 +46,9 @@ Defaults::Mauke - load a few generally useful modules to save typing
  
  ## equivalent to
  # use strict;
- # use warnings;
- # no warnings qw[recursion qw];
+ # use warnings; no warnings qw[recursion qw];
  # use utf8;
+ # no bareword::filehandles;
  # no indirect;
  # use Function::Parameters;
 
@@ -59,7 +61,8 @@ and adapt the source.
 
 =head1 SEE ALSO
 
-L<strict>, L<warnings>, L<utf8>, L<perllexwarn>, L<indirect>, L<Function::Parameters>.
+L<strict>, L<warnings>, L<utf8>, L<perllexwarn>, L<bareword::filehandles>,
+L<indirect>, L<Function::Parameters>.
 
 =head1 AUTHOR
 
