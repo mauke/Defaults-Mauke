@@ -7,27 +7,20 @@ use utf8;
 no indirect;  # beware bugs/segfaults
 use Function::Parameters ();  # suckage hopefully fixed
 
-*VERSION = \'0.071';
+use Carp qw(croak);
 
-sub _croak {
-	require Carp;
-	{
-		no warnings qw(redefine);
-		*_croak = \&Carp::croak;
-	}
-	goto &_croak;
-}
+*VERSION = \'0.072';
 
 sub _indir {
 	my ($obj, $meth) = @_;
-	_croak qq{Indirect call of method "$meth" on object "$obj"};
+	croak qq{Indirect call of method "$meth" on object "$obj"};
 }
 
 sub import {
 	my ($class, @args) = @_;
 	my $caller = caller;
 	
-	_croak qq{"$_" is not exported by the $class module} for @args;
+	croak qq{"$_" is not exported by the $class module} for @args;
 	
 	strict->import;
 	warnings->import;
