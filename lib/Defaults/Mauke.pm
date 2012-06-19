@@ -5,17 +5,12 @@ use strict;
 use utf8;
 
 no bareword::filehandles;
-no indirect;  # beware bugs/segfaults
-use Function::Parameters ();  # suckage hopefully fixed
+no indirect 0.16;
+use Function::Parameters 0.06 ();  # require the lexical pragma version
 
 use Carp qw(croak);
 
 *VERSION = \'0.072';
-
-sub _indir {
-	my ($obj, $meth) = @_;
-	croak qq{Indirect call of method "$meth" on object "$obj"};
-}
 
 sub import {
 	my ($class, @args) = @_;
@@ -28,13 +23,15 @@ sub import {
 	warnings->unimport(qw[recursion qw]);
 	utf8->import;
 	bareword::filehandles->unimport;
-	indirect->unimport(hook => \&_indir);
-	Function::Parameters::import_into $caller;
+	indirect->unimport(':fatal');
+	Function::Parameters->import;
 }
 
 1
 
 __END__
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -49,7 +46,7 @@ Defaults::Mauke - load a few generally useful modules to save typing
  # use warnings; no warnings qw[recursion qw];
  # use utf8;
  # no bareword::filehandles;
- # no indirect;
+ # no indirect qw(:fatal);
  # use Function::Parameters;
 
 =head1 DESCRIPTION
