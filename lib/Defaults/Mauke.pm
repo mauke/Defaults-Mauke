@@ -10,7 +10,7 @@ use Function::Parameters 0.06 ();  # require the lexical pragma version
 
 use Carp qw(croak);
 
-*VERSION = \'0.072';
+*VERSION = \'0.08';
 
 sub import {
 	my ($class, @args) = @_;

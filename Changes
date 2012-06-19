@@ -1,5 +1,9 @@
 Revision history for Defaults-Mauke
 
+0.08    2012-06-19
+        * upgrade to Function::Parameters 0.06
+        * use indirect ':fatal'
+
 0.071   2011-08-08
         * skip failing tests on 5.8
 
