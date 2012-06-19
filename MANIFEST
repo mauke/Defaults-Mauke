@@ -1,9 +1,8 @@
 Changes
-MANIFEST
-Makefile.PL
-README
 lib/Defaults/Mauke.pm
+Makefile.PL
+MANIFEST
+README
 t/00-load.t
 t/01-bare.t
-t/pod-coverage.t
 t/pod.t
