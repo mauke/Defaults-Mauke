@@ -1,5 +1,8 @@
 Revision history for Defaults-Mauke
 
+0.09    2012-06-25
+        * use Function::Parameters in strict mode if possible
+
 0.08    2012-06-19
         * upgrade to Function::Parameters 0.06
         * use indirect ':fatal'

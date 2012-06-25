@@ -10,7 +10,7 @@ use Function::Parameters 0.06 ();  # require the lexical pragma version
 
 use Carp qw(croak);
 
-*VERSION = \'0.08';
+*VERSION = \'0.09';
 
 sub import {
 	my ($class, @args) = @_;
@@ -24,7 +24,14 @@ sub import {
 	utf8->import;
 	bareword::filehandles->unimport;
 	indirect->unimport(':fatal');
-	Function::Parameters->import;
+	Function::Parameters->import(
+		Function::Parameters->VERSION >= 0.07
+			? {
+				fun => 'function_strict',
+				method => 'method_strict',
+			}
+			: ()
+	);
 }
 
 1
@@ -47,6 +54,9 @@ Defaults::Mauke - load a few generally useful modules to save typing
  # use utf8;
  # no bareword::filehandles;
  # no indirect qw(:fatal);
+ ## if we have Function::Parameters v0.07:
+ # use Function::Parameters { fun => "function_strict", method => "method_strict" };
+ ## otherwise:
  # use Function::Parameters;
 
 =head1 DESCRIPTION
