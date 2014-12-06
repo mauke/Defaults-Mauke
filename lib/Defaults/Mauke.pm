@@ -11,7 +11,7 @@ use Function::Parameters 1.06 qw(:strict);
 
 use Carp qw(croak);
 
-*VERSION = \'0.09';
+*VERSION = \'0.10';
 
 method import($class: @args) {
     my $caller = caller;

@@ -1,5 +1,9 @@
 Revision history for Defaults-Mauke
 
+0.10    2014-12-06
+        * upgrade to Function::Parameters 1.06
+        * depend on perl 5.16 and load all of its features (except switch)
+
 0.09    2012-06-25
         * use Function::Parameters in strict mode if possible
 
