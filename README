@@ -1,6 +1,6 @@
 Defaults-Mauke
 
-Load a few generally useful modules to save typing.
+Load mauke's favorite modules.
 
 
 INSTALLATION
@@ -30,8 +30,8 @@ You can also look for information at:
     CPAN Ratings
         http://cpanratings.perl.org/d/Defaults-Mauke
 
-    Search CPAN
-        http://search.cpan.org/dist/Defaults-Mauke/
+    MetaCPAN
+        https://metacpan.org/module/Defaults::Mauke
 
 
 COPYRIGHT AND LICENCE

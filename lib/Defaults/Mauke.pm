@@ -42,7 +42,7 @@ __END__
 
 =head1 NAME
 
-Defaults::Mauke - load a few generally useful modules to save typing
+Defaults::Mauke - load mauke's favorite modules
 
 =head1 SYNOPSIS
 
