@@ -4,34 +4,36 @@ use warnings;
 use strict;
 use utf8;
 
+use feature ();
 no bareword::filehandles;
 no indirect 0.16;
-use Function::Parameters 0.06 ();  # require the lexical pragma version
+use Function::Parameters 1.06 qw(:strict);
 
 use Carp qw(croak);
 
 *VERSION = \'0.09';
 
-sub import {
-    my ($class, @args) = @_;
+method import($class: @args) {
     my $caller = caller;
 
     croak qq{"$_" is not exported by the $class module} for @args;
 
+
     strict->import;
+
     warnings->import;
     warnings->unimport(qw[recursion qw]);
+
     utf8->import;
+
+    feature->import(':5.16');
+    feature->unimport('switch');
+
     bareword::filehandles->unimport;
+
     indirect->unimport(':fatal');
-    Function::Parameters->import(
-        Function::Parameters->VERSION >= 0.07
-            ? {
-                fun => 'function_strict',
-                method => 'method_strict',
-            }
-            : ()
-    );
+
+    Function::Parameters->import(':strict');
 }
 
 1
@@ -52,12 +54,10 @@ Defaults::Mauke - load mauke's favorite modules
  # use strict;
  # use warnings; no warnings qw[recursion qw];
  # use utf8;
+ # use feature ':5.16'; no feature 'switch';
  # no bareword::filehandles;
  # no indirect qw(:fatal);
- ## if we have Function::Parameters v0.07:
- # use Function::Parameters { fun => "function_strict", method => "method_strict" };
- ## otherwise:
- # use Function::Parameters;
+ # use Function::Parameters qw(:strict);
 
 =head1 DESCRIPTION
 

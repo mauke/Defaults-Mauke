@@ -3,8 +3,8 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 sub merge_key_into {
-	my ($href, $target, $source) = @_;
-	%{$href->{$target}} = (%{$href->{$target}}, %{delete $href->{$source}});
+    my ($href, $target, $source) = @_;
+    %{$href->{$target}} = (%{$href->{$target}}, %{delete $href->{$source}});
 }
 
 my %opt = (
@@ -16,6 +16,7 @@ my %opt = (
     LICENSE => 'unrestricted',
     PL_FILES => {},
 
+    MIN_PERL_VERSION => '5.16.0',
     CONFIGURE_REQUIRES => {
         'strict'              => 0,
         'warnings'            => 0,
@@ -31,7 +32,7 @@ my %opt = (
         'bareword::filehandles' => 0,
         'indirect'              => '0.16',
         'utf8'                  => 0,
-        'Function::Parameters'  => '0.06',
+        'Function::Parameters'  => '1.06',
     },
 
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
