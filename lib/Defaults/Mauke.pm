@@ -13,25 +13,25 @@ use Carp qw(croak);
 *VERSION = \'0.09';
 
 sub import {
-	my ($class, @args) = @_;
-	my $caller = caller;
-	
-	croak qq{"$_" is not exported by the $class module} for @args;
-	
-	strict->import;
-	warnings->import;
-	warnings->unimport(qw[recursion qw]);
-	utf8->import;
-	bareword::filehandles->unimport;
-	indirect->unimport(':fatal');
-	Function::Parameters->import(
-		Function::Parameters->VERSION >= 0.07
-			? {
-				fun => 'function_strict',
-				method => 'method_strict',
-			}
-			: ()
-	);
+    my ($class, @args) = @_;
+    my $caller = caller;
+
+    croak qq{"$_" is not exported by the $class module} for @args;
+
+    strict->import;
+    warnings->import;
+    warnings->unimport(qw[recursion qw]);
+    utf8->import;
+    bareword::filehandles->unimport;
+    indirect->unimport(':fatal');
+    Function::Parameters->import(
+        Function::Parameters->VERSION >= 0.07
+            ? {
+                fun => 'function_strict',
+                method => 'method_strict',
+            }
+            : ()
+    );
 }
 
 1
